@@ -1,8 +1,7 @@
 FROM node:14
 
-# RUN apt-get update && \
-#     apt-get install -y vim net-tools
-
+RUN apt-get update && \
+    apt-get install -y vim net-tools openssh-server
 
 # 앱 디렉터리 생성
 WORKDIR /usr/src/app
@@ -19,6 +18,6 @@ WORKDIR /usr/src/app
 # 앱 소스 추가
 # COPY . .
 
-# EXPOSE 8080
+EXPOSE 8080
 
 # CMD [ "node", "server.js" ]
