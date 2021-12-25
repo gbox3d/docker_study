@@ -1,3 +1,5 @@
 exam0/example-app/
 # exam0/Dockerfile
 mongo/database
+
+exam02/*.tar
