@@ -1,11 +1,9 @@
-# 파일 규격 버전
-version: "3"
 # 이 항목 밑에 실행하려는 컨테이너 들을 정의
 services: 
   # 서비스 명
   mongodb:
-    # 사용할 이미지
-    image: mongo:4
+    # 사용할 이미지: 4 대신 7.0 버전을 명시합니다.
+    image: mongo:7.0
     # 컨테이너 실행 시 재시작
     restart: always
     # 컨테이너 이름 설정
@@ -16,8 +14,8 @@ services:
     # -e 옵션
     environment: 
       # MongoDB 계정 및 패스워드 설정 옵션
-      MONGO_INITDB_ROOT_USERNAME: gbox3d
-      MONGO_INITDB_ROOT_PASSWORD: 8086
+      MONGO_INITDB_ROOT_USERNAME: user1
+      MONGO_INITDB_ROOT_PASSWORD: xxxxx
     volumes:
-      # -v 옵션 (다렉토리 마운트 설정)
+      # -v 옵션 (디렉토리 마운트 설정)
       - /data/mongodb/data/db:/data/db

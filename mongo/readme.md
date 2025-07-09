@@ -17,7 +17,11 @@ docker run --name mongodb-container -v ~/data:/data/db -d -p 27017:27017 mongo
 ### docker-compose install
 
 ```
-sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo curl -L \
+  "https://github.com/docker/compose/releases/download/v2.38.2/docker-compose-$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m)" \
+  -o /usr/local/bin/docker-compose
+
 sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 
