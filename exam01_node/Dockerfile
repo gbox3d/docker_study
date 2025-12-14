@@ -1,20 +1,22 @@
-FROM node:12
-# 앱 디렉터리 생성
-WORKDIR /usr/src/app
+FROM ubuntu:25.10
 
-# 앱 의존성 설치
-# 가능한 경우(npm@5+) package.json과 package-lock.json을 모두 복사하기 위해
-# 와일드카드를 사용
-COPY package*.json ./
+# 필수 패키지
+RUN apt update && apt install -y \
+    curl ca-certificates xz-utils \
+ && rm -rf /var/lib/apt/lists/*
 
-RUN npm install
-# 프로덕션을 위한 코드를 빌드하는 경우
-# RUN npm ci --only=production
+# Node.js 공식 바이너리 설치 (PATH 자동)
+WORKDIR /tmp
+RUN curl -LO https://nodejs.org/dist/v20.11.1/node-v20.11.1-linux-x64.tar.xz \
+ && tar -xJf node-v20.11.1-linux-x64.tar.xz \
+ && cp -r node-v20.11.1-linux-x64/* /usr/local/
 
-# 앱 소스 추가
-COPY . .
+# 앱 코드 위치
+WORKDIR /works
+COPY . /works
 
-# EXPOSE 8080
+# 서버 포트
+EXPOSE 8080
 
-# CMD [ "node", "server.js" ]
-# CMD [ "bash" ]
+# 완전 실행형
+ENTRYPOINT ["node", "server.js"]

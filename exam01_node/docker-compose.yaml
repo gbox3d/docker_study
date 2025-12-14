@@ -1,0 +1,12 @@
+services:
+  hello-nodejs:
+    image: hello-nodejs:1.0
+    container_name: hello-nodejs
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./:/works
+    working_dir: /works
+    command: >
+      /root/.nvm/versions/node/v24.12.0/bin/node
+      server.js

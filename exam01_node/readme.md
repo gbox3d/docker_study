@@ -1,29 +1,31 @@
-## docker file 만들기 
-```
-touch Dockerfile
+# Setting up Node.js Development Environment with Docker
+
+```bash
+
+docker run -it -v  ./exam01_node:/works -p 8080:8080 --name hello-nodejs ubuntu:25.10     
+
 ```
 
-## 이미지 빌드하기
-```
-docker build . -t study/node-web-app
+## Setting up Node.js Environment
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+. "$NVM_DIR/nvm.sh"
+nvm install --lts
+node -v
+npm -v
 ```
 
-## 생성된 이미지 목록 확인
-```
-docker images
-```
 
-## 이미지를 가지고 컨테이너 등록 (실행)
-```
-docker run -p 8081:8080 -d study/node-web-app
-```
+## Installing Project Dependencies
 
-## 실행중인 컨테이너 목록 확인
-```
-docker ps
-```
+```bash
+docker exec hello-nodejs bash -lc '
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+node -v
+node /works/server.js
+'
 
-## 컨테이너 중지
 ```
-```
-
